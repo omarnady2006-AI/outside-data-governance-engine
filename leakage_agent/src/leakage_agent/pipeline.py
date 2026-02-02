@@ -5,7 +5,7 @@ from .forbidden_scan import forbidden_scan
 from .normalize import normalize
 from .transform_engine import transform_engine
 from .postcheck import postcheck
-from .metrics import calculate_metrics
+from .engine import calculate_metrics
 from .decision import make_decision
 from .reporting import generate_report
 from .io_utils import write_outputs

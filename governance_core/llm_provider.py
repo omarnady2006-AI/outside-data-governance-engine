@@ -101,16 +101,18 @@ class OllamaProvider(LLMProvider):
         - llama3.1:70b (best reasoning)
         - llama3.1:8b (fast, good for CI)
         - qwen2.5:32b (excellent for technical tasks)
+        - phi3:mini (very fast, compact)
     """
     
     DEFAULT_MODEL = "llama3.1:70b"
     FALLBACK_MODEL = "llama3.1:8b"
+    FALLBACK_MODEL_2 = "phi3:mini"
     
     def __init__(
         self,
         model: str = DEFAULT_MODEL,
         base_url: str = "http://localhost:11434",
-        timeout: int = 120
+        timeout: int = 300
     ):
         """
         Initialize Ollama provider.
@@ -232,8 +234,16 @@ class OllamaProvider(LLMProvider):
                     self.model = self.FALLBACK_MODEL
                     return True
                 
+                # Try second fallback model (phi3:mini)
+                if self.FALLBACK_MODEL_2 in model_names:
+                    logger.warning(
+                        f"Model {self.model} not found, using fallback {self.FALLBACK_MODEL_2}"
+                    )
+                    self.model = self.FALLBACK_MODEL_2
+                    return True
+                
                 logger.error(
-                    f"Neither {self.model} nor {self.FALLBACK_MODEL} found in Ollama. "
+                    f"None of the supported models found in Ollama. "
                     f"Available models: {model_names}"
                 )
                 return False

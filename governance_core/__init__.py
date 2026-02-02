@@ -52,7 +52,14 @@ from .metrics import (
     UtilityPreservationMetrics
 )
 
-__version__ = "2.0.0"
+# Public API facade (new in v2.1.0)
+from .api import (
+    evaluate_governance,
+    GovernanceResult,
+    __version__ as api_version
+)
+
+__version__ = "2.1.0"
 
 __all__ = [
     # Core components
@@ -76,4 +83,8 @@ __all__ = [
     "PrivacyRiskMetrics",
     "SemanticInvariantMetrics",
     "UtilityPreservationMetrics",
+    
+    # Public API (v2.1.0)
+    "evaluate_governance",
+    "GovernanceResult",
 ]
