@@ -27,3 +27,11 @@ Thumbs.db
 # Temp smoke data
 tmp_smoke/
 
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+dist/
+build/
+*.log

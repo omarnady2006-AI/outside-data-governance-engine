@@ -1,7 +1,7 @@
 import pytest
 import pandas as pd
 from leakage_agent.pipeline import Pipeline
-from leakage_agent.metrics import validate_ranges, validate_enums, validate_schema
+from leakage_agent.engine import validate_ranges, validate_enums, validate_schema
 
 @pytest.fixture
 def pipeline():
